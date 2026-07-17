@@ -2,5 +2,4 @@
 ARG EXTRA_PACKAGES=""
 
 # Installs the extra packages if provided, safely skipping if left empty
-RUN apt-get update && apt-get install -y \
-    $EXTRA_PACKAGES 
+RUN apt-get update && apt-get install -y $EXTRA_PACKAGES 

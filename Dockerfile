@@ -1,13 +1,6 @@
-# Use a Debian base image
-FROM debian:bookworm-slim
+# Must match the build-arg key used in the workflow
+ARG EXTRA_PACKAGES=""
 
-# Define the input variable for the package name
-ARG PACKAGE_NAME
-
-# Update and install the variable-defined package safely
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ${PACKAGE_NAME} \
-    && rm -rf /var/lib/apt/lists/*
-
-# Your entrypoint or application logic goes here
-CMD ["bash"]
+# Installs the extra packages if provided, safely skipping if left empty
+RUN apt-get update && apt-get install -y \
+    $EXTRA_PACKAGES 
